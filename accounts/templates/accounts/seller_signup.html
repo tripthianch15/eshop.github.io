@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        {% if error_message %}
+            <div class="alert alert-danger">{{ error_message }}</div>
+           <!-- {{login_user_id}}, {{first_name}}, {{email}}, {{contact_number}} -->
+        {% endif %}
+        <div class="col-md-6">
+            <div class="card bg-dark text-white p-4">
+                <h3 class="text-center">Create Account</h3>
+                <!-- <form method="POST" action="#" enctype="multipart/form-data"> -->
+                <form method='POST' action="{% url 'seller_registration' %}" onsubmit="return validateForm()"  enctype="multipart/form-data">
+                    {% csrf_token %}
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Login User ID</label>
+                        <input type="text" class="form-control" placeholder="Enter login User ID" id="login_user_id" name="login_user_id" maxlength="50" required value="{{ login_user_id|default:'' }}">
+                    </div>             
+
+                    <div class="mb-3">
+                        <label class="form-label">Password*</label>
+                        <input type="password" class="form-control" placeholder="Enter password" id="password1" name="password1" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Confirm Password*</label>
+                        <input type="password" class="form-control" placeholder="Enter password" id="password2" name="password2" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Name*</label>
+                        <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Enter your name" maxlength="100" required value="{{ first_name|default:'' }}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required value="{{ email|default:'' }}">
+                    </div>
+
+                    <div class="mb-3">
+                        {% include "accounts/country_codes.html" %}
+                        
+                        <input type="hidden" class="form-control" id="contact_number" name="contact_number" placeholder="Enter your Contact number" required value="{{ contact_number|default:'' }}">
+                        <label class="form-label" for="contact_number1">Contact Number (10 digits)*</label>
+                        <input value ="{{contact_number}}" class ="form-control" name = "contact_number1" type="text" id="contact_number1" placeholder="Enter your mobile number"  required value="{{ contact_number|default:'' }}"/>
+                    </div>
+                                   
+
+                        <div class="form-group m-3">
+                            <label for="agreeCheckbox">
+                              <input type="checkbox" id="agreeCheckbox" name="agreeCheckbox">
+                              I read and accept the terms and conditions.
+                            </label>
+                            </div>                                      
+                            
+                            <a href="{% url 'buyer_login' %}" class = "nav-link">Already Signed Up, Click here to Login</a>
+                           
+                    <button type="submit" class="btn btn-primary w-100">Create Account</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+function validateForm() {
+    // Check if the "I read and understood the instructions" checkbox is checked
+    var checkbox = document.getElementById("agreeCheckbox");
+    if (!checkbox.checked) {
+        alert("You must agree to the instructions before submitting.");
+        return false;
+    }
+    // password1 = document.getElementById("password1").value
+    // password2 = document.getElementById("password2").value
+
+    // if (password1 != password2)
+    // {
+    //   error_message = "Passwords do not match!"
+    //   //alert(error_message);
+    //   document.getElementById("error_message").innerHTML = error_message;
+    //   return false;
+    // }
+
+    // Get the selected country code and mobile number
+    var countryCode = document.getElementById("countryCode").value;
+    var mobileNumber = document.getElementById("contact_number1").value;
+
+    // E.164 format: concatenate the country code and mobile number (without special characters)
+    var fullMobileNumber = countryCode + mobileNumber;
+
+    // Set the full mobile number (E.164 format) back into the mobile input field
+    document.getElementById("contact_number").value = fullMobileNumber;
+    contact_number = document.getElementById("contact_number").value;
+    //alert("Combined no: "+contact_number);
+    // If all validations pass, allow form submission
+    return true;
+}
+</script>
+{% endblock content %}

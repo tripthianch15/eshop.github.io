@@ -1,0 +1,36 @@
+<div class="row">
+    <h3 class="site_title_1 title_2" 
+            id="thank-text">
+              
+               <span></span>
+               <b>Explore ... </b></h3>
+    {% for product in products %}
+    <div class="col-md-3 mt-3">
+       
+        <div class="card product">
+           
+            <img class="card-img-top product-img-top" src="{{ product.product_image.url }}" alt="{{product.product_name}}">
+            
+           </a>
+            <div class="card-body">
+                <h5>{{product.product_name}}</h5>
+                <!-- <p class="card-text">{{product.description}}</p> -->
+                <p>Price: {{product.currency}} <s>{{product.price}}</s>,  Discount: {{product.currency}} {{product.discount}}</p>
+                <!-- <p>Discount: {{product.currency}} {{product.discount}}</p> -->
+                <p>Sale Price: {{product.currency}} {{product.selling_price}} </p>  
+                <p>Quantity: {{product.quantity}} {{product.measurement}}</p>
+                <p id="deliveryDatePara" class="green-para">Delivery date: {{delivery_date}} </p>
+                <p>Seller: {{ product.seller.first_name }}</p>
+              
+            </div>
+        </div>
+    </div> 
+        <!-- Bootstrap JS Bundle with Popper from CDN -->
+        <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+         -->
+
+     
+    {% endfor %} 
+
+</div>

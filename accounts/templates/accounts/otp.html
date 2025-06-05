@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block title %} Sign in/Login {% endblock %}
+{% block style %}
+<style>
+  .txt {
+    font-family: sans-serif; 
+    color: white;
+    text-align: center;
+    font-size: 20px;
+    max-width: 500px;
+    position: relative;
+  }
+  .txt:before {
+    content: "";
+    display: block;
+    width: 200px;
+    height: 2px;
+    background: white;
+    left: 0;
+    top: 50%;
+    position: absolute;
+  }
+  .txt:after {
+    content: "";
+    display: block;
+    width: 200px;
+    height: 2px;
+    background:white;
+    right: 0;
+    top: 50%;
+    position: absolute;
+  }
+
+
+</style>
+{% endblock style %}
+
+{% block content %}
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+      <div class="col-md-6">
+          <div class="card bg-dark text-white p-4">
+            {% if otp_message %}
+            <h3 style="color:yellow">{{otp_message}}</h3>
+            {% endif %}
+        
+            <form action="{% url 'confirm_otp' %}" method="post" >
+
+              {% csrf_token %}
+              <div class="user-detailsmy-2">          
+                  <label for="otp">Enter the OTP:</label>
+                  <input class="my-2" type="text" name="otp" />
+                  <br>
+              </div>
+                
+              <!-- <div>          
+                  <input class = "btn btn-success btn-lg" type="submit" value="Verify OTP">
+                  <input type="reset" value="Reset" class="btn btn-secondary btn-lg">
+              </div> -->
+              
+              <input type="submit" class="w-50 btn btn-primary btn btn-lg my-2" value="Verify OTP">
+              <input type="reset" value="Reset" class="mx-2 btn btn-secondary btn-lg">
+              <sub>
+                {% if request.user.user_type == "buyer" %}
+                  <h5>If you don't have an account? then,<a href="{% url 'buyer_registration' %}" style="text-decoration: none; color:green;  cursor:pointer;">Click here to Sign Up</a>
+                  </h5>
+                {% else %}
+                <h5>If you don't have an account? then,<a href="{% url 'seller_registration' %}" style="text-decoration: none; color:green;  cursor:pointer;">Click here to Sign Up</a>
+                </h5>
+                {% endif %}
+                </sub>     
+            </form>
+          </div>
+      </div>
+</div>
+</div>
+{% endblock content%}

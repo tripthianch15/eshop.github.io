@@ -1,0 +1,68 @@
+{% load static %}
+<!-- Product Content -->
+   
+    <h2 class="text-center mb-4">Featured Products</h2>
+    <!-- 
+    row
+
+This sets up a Bootstrap flexbox row container. Inside it, you’ll usually place columns (<div class="col">).
+
+Used to organize content into a grid layout.
+
+row-cols-2
+By default (on extra small devices),
+     display 2 columns per row.
+row-cols-md-3
+On medium screens (≥768px), 
+    display 3 columns per row.
+
+row-cols-lg-4
+On large screens (≥992px), 
+    display 4 columns per row.
+
+g-4
+Applies gap of 4 units 
+(1.5rem or 24px by default)
+between rows and columns. 
+(g stands for gutter spacing)
+    -->
+    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-4" id="productContainer">
+
+        <div class="card shadow-sm">
+            <img src="{% static 'mangoes.jpg' %}" class="card-img-top" alt="Mangoes">
+            
+            <div class="card-body">
+                <h6 class="card-title">Mangoes</h6>
+                <p><span class="text-muted"><s>₹ 200</s></span> <span class="text-danger">₹180</span></p>
+                <button class="btn btn-primary">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+
+    
+    <script>
+        // Dark Mode Toggle
+        document.getElementById("toggleDarkMode").addEventListener("click", function() {
+            document.body.classList.toggle("dark-mode");
+        });
+
+        // Generate 50 products dynamically
+        let container = document.getElementById("productContainer");
+        for (let i = 1; i <= 50; i++) {
+            let col = document.createElement("div");
+            col.className = "col";
+            // <img src="https://picsum.photos/200/150" class="card-img-top" alt="Product ${i}">
+            col.innerHTML = `
+                <div class="card shadow-sm">
+                    <img src="mangoes.jpg" class="card-img-top" alt="Product ${i}">
+                    <img src="https://picsum.photos/200/150" class="card-img-top" alt="Product ${i}">
+                    <div class="card-body">
+                        <h6 class="card-title">Product ${i}</h6>
+                        <p><span class="text-muted"><s>₹ ${i * 5 + 20}</s></span> <span class="text-danger">₹${i * 3 + 15}</span></p>
+                        <button class="btn btn-primary">Add to Cart</button>
+                    </div>
+                </div>`;
+            container.appendChild(col);
+        }
+    </script>

@@ -1,0 +1,83 @@
+<!-- Embed Chatbox -->
+<!-- Floating Chat Button -->
+
+<!-- <div class="position-fixed bottom-0 end-0 m-3 rounded-circle bg-primary text-white p-3 shadow-lg d-flex align-items-center justify-content-center" style="cursor: pointer; transition: transform 0.2s ease-in-out;" onclick="toggleChat()">
+    <span class="fs-3">💬</span> <span class="d-none d-sm-inline ms-2">CHAT NOW</span>
+</div> -->
+
+<div class="position-fixed bottom-0 end-0 m-3 bg-primary text-white p-3 shadow-lg d-flex align-items-center justify-content-center rounded-rectangle" 
+     style="cursor: pointer; transition: transform 0.2s ease-in-out; border-radius: 20px;" 
+     onclick="toggleChat()">
+    <span class="fs-3">💬</span> 
+    <span class="d-none d-sm-inline ms-2">CHAT NOW</span>
+</div>
+
+<!-- Chat Window (Initially Hidden) -->
+<div class="position-fixed bottom-0 end-0 m-3" id="chatPopup" style="width: 320px; display: none;">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+            Chat with Us
+            <button class="btn-close btn-close-white" onclick="toggleChat()" aria-label="Close"></button>
+        </div>
+        <div class="card-body p-2" style="max-height: 300px; overflow-y: auto; background-color: #f9f9f9;" id="chatBody">
+            <div class="bot-message p-2 mb-2 rounded-3 bg-secondary text-white">Hello! How can I help you? 😊</div>
+        </div>
+        <div class="card-footer bg-white border-top">
+            <div class="input-group">
+                <input type="text" id="userInput" class="form-control" placeholder="Type a message..." onkeypress="handleKeyPress(event)">
+                <button class="btn btn-primary" onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById("chatPopup").style.display = "none"; // Hide chat box initially
+    });
+
+    function toggleChat() {
+        var chatPopup = document.getElementById("chatPopup");
+        chatPopup.style.display = (chatPopup.style.display === "none" || chatPopup.style.display === "") ? "block" : "none";
+    }
+
+    function sendMessage() {
+        var inputField = document.getElementById("userInput");
+        var messageText = inputField.value.trim();
+        if (messageText === "") return;
+
+        var chatBody = document.getElementById("chatBody");
+
+        // Add user message
+        var userMessage = document.createElement("div");
+        userMessage.classList.add("user-message", "p-2", "mb-2", "rounded-3", "bg-success", "text-white");
+        userMessage.style.alignSelf = "flex-end";
+        userMessage.textContent = messageText;
+        chatBody.appendChild(userMessage);
+
+        // Auto-scroll to bottom
+        chatBody.scrollTop = chatBody.scrollHeight;
+
+        // Auto-reply from bot after a delay
+        setTimeout(() => {
+            var botMessage = document.createElement("div");
+            botMessage.classList.add("bot-message", "p-2", "mb-2", "rounded-3", "bg-secondary", "text-white");
+            botMessage.style.alignSelf = "flex-start";
+            botMessage.textContent = "Thanks for your message! We will get back to you soon. 😊";
+            chatBody.appendChild(botMessage);
+
+            // Auto-scroll to latest message
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }, 1000);
+
+        // Clear input field
+        inputField.value = "";
+    }
+
+    // Send message on Enter key press
+    function handleKeyPress(event) {
+        if (event.key === "Enter") {
+            sendMessage();
+        }
+    }
+</script>

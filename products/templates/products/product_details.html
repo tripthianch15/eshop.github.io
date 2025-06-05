@@ -1,0 +1,35 @@
+<!-- product_details.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="container mt-4 bg-dark text-white" id="itemsDisplay">
+        <div class="row">
+        <div class="col-md-4 mt-3">
+           
+            <div>
+ 
+                <img class="product-details-img" src="{{ product.product_image.url }}" alt="{{product.product_name}}">
+            </div>
+        </div>
+        <div class="col-md-8 mt-3">
+            <h5>{{product.product_name}}</h5>
+            <!-- <p class="card-text">{{product.description}}</p> -->
+            <p>Price: {{product.currency}} <s>{{product.price}}</s>,  Discuount: {{product.currency}} {{product.discount}} </p>
+            <!-- <p>Discuount: {{product.currency}} {{product.discount}} </p> -->
+            <p class="yellow-para">Sale Price: {{product.currency}} {{product.selling_price}} </p>  
+            <p>Quantity: {{product.quantity}} {{product.measurement}},  Available Quantity: {{ product.available_stock }}</p>
+            <!-- <p>Available Quantity: {{ product.available_quantity }}</p> -->
+            <p id="deliveryDatePara" class="yellow-para">Delivery date: {{delivery_date}} </p>
+            <p>Seller Name: {{ product.seller.first_name }}</p>
+            <p>Seller's Address:</p> 
+            <p>{{ product.seller.postal_address }}, </p>
+            <p>{{ product.seller.district }},  {{ product.seller.state }}, PIN {{ product.seller.pin }}</p>
+
+            <p>Seller's Contact number: {{ product.seller.contact_number }}</p> 
+  
+            {% include 'products/add_to_cart.html' %}
+        </div>
+        </div>
+    </div>
+{% endblock %}

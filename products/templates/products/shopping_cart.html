@@ -1,0 +1,15 @@
+              
+    <a href="{% url 'view_cart' %}" class="nav-link" id="cartButton">
+       <i class="bi bi-cart"> </i>
+
+        Cart  <span id="cartCount" style="color:orangered;font-weight: bold;">
+            {% if cart.items.count > 0 %}
+                ( {{cart.items.count}} )
+            {% endif % }
+            {% if cart_count = 0 %}
+                ( 0 )
+            {% endif % }
+            </span>
+        </a>
+    <!-- <input type="hidden" text="0" value="0" id="cart">                       -->
+    <input  text="{{cart.items.count}}" value="{{cart.items.count}}" id="cart"> 

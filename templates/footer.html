@@ -1,0 +1,44 @@
+{% load static %}
+{% include 'footer-top.html' %}<!-- <footer class="footer mt-4">
+    <div class="container">
+        <p class="text-center">© 2024-2025 Bharath Online Store - All Rights Reserved</p>
+    </div>
+
+</footer> -->
+<footer class="footer text-white">
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+
+<ul class="navbar-nav mx-2">
+<li id="menu-item-0" 
+class="nav-item ms-1 mx-2 nav-link">© 2024-2025 Bharath Online Store - All Rights Reserved</li>
+<li id="menu-item-1" 
+class="nav-item ms-1 mx-2">
+<a href="{% url 'privacy_policy' %}" class="nav-link">
+    Privacy&nbsp;Policy
+  </a>
+</li>
+
+
+<li id="menu-item-2" 
+class="nav-item ms-1 mx-2">
+<a href="{% url 'terms_and_conditions' %}" class="nav-link">
+    Terms&nbsp;&&nbsp;Conditions
+  </a>
+</li>
+<li id="menu-item-3" 
+class="nav-item ms-1 mx-2">
+<a href="{% url 'shipping_policy' %}" class="nav-link">
+    Shipping&nbsp;Policy
+  </a>
+
+</li>
+<li id="menu-item-4" 
+class="nav-item ms-1 mx-2">
+<a href="{% url 'cancellation_refund_policy' %}" class="nav-link">
+    Cancellation&nbsp;Policy
+  </a>
+
+</li>
+</ul>
+</nav>
+</footer>

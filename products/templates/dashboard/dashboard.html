@@ -1,0 +1,13 @@
+{% if request.user.is_seller %}
+    {% include 'seller_dashboard/seller_dashboard.html' %}
+{% elif request.user.is_buyer %}
+    {% include 'buyer_dashboard/buyer_dashboard.html' %}
+{% elif request.user.is_staff %}
+    {% include 'staff_dashboard/staff_dashboard.html' %}
+{% elif request.user.is_admin %}
+    {% include 'admin_dashboard/admin_dashboard.html' %}
+{% elif request.user.is_owner %}
+    {% include 'owner_dashboard/owner_dashboard.html' %}
+{% else %}
+    
+{% endif %} 

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}  <!-- Load the static template tag -->
+
+{% block title %}
+    Marketplace - Shopping Cart
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    
+    <h3 class="site_title_1 title_2" 
+    id="thank-text">
+ <span></span>
+ <b>Processing Payment
+</b></h3>
+    <p><strong>Amount:</strong> {{ payment.amount }}</p>
+    <p><strong>Status:</strong> {{ payment.status }}</p>
+
+    {% if payment.status == 'Completed' %}
+        <p>Payment successful! Your order is confirmed.</p>
+        <a href="{% url 'order_confirmation' %}">Go to Order Confirmation</a>
+    {% else %}
+        <p>Your payment is being processed.</p>
+    {% endif %}
+</div>
+
+{% endblock content %}

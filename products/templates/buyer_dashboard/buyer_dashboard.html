@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}  <!-- Load the static template tag -->
+
+{% block content %}
+<div class="dashboard-container">
+    <!-- Main Content -->
+    <main class="main-content">
+        <h1>Welcome, {{ request.user.username }}!</h1>
+        <section>
+             
+            <p>Total Orders: {{ orders.count }}</p>
+        </section>
+
+        <section>
+        <div id="#dashboard">
+            {% include 'orders/myorders.html' %}
+        </div>
+        </section>
+    </main>
+</div>
+{% endblock content %}

@@ -1,0 +1,96 @@
+<!--  Header -->
+<nav class="navbar navbar-expand-lg navbar-dark navbar-top">
+    <div class="container-fluid">
+        <!-- Logo -->
+        <strong><a class="navbar-brand" href="/"><span style="color:#00fbff;">Roomify</span>🏠<span style="color:#ff9900;">.com</span></a></strong>
+       
+        <!-- Search Bar -->
+        <div class="search-container mx-auto my-2">
+            
+                {% include 'products/categories.html' %}
+           
+            <input class="form-control search-input" type="search" placeholder="Search products...">
+            <button class="btn search-button"><i class="bi bi-search"></i></button>
+        </div>
+<!-- Dropdown Menu -->
+            {% if request.user.is_authenticated %}
+            
+            <div class="dropdown my-2">
+                <a href="#" class="dropdown-toggle" type="button" id="userMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                    <strong><i class="fas fa-user"></i>&nbsp;{{request.user.first_name}}
+                </a>
+                <ul class="dropdown-menu bg-dark" aria-labelledby="userMenuButton">
+                <li><a class="dropdown-item nav-link" href="/buyer_logout/">Sigout</a></li>
+                <li><a class="dropdown-item nav-link" href="#buyer_order">MyOrder</a></li>
+                <li><a class="dropdown-item nav-link" href="#buyer_cart">My Cart</a></li>
+                <li><a class="dropdown-item nav-link" href="/buyer_shipping_address/">Shipping Address</a></li>
+                <li><a class="dropdown-item nav-link" href="{% url 'buyer' %}">My Profile</a></li>
+                <li><a class="dropdown-item nav-link" href="/password_reset/">Chang Password</a></li>
+                </ul>
+            </strong>
+            </div>
+            {% else %}
+            <div class="dropdown my-2">
+                <strong>
+                <a href="#" class="dropdown-toggle" type="button" id="userMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                    Login
+                </a>
+                <ul class="dropdown-menu bg-dark" aria-labelledby="userMenuButton">
+                <li><a class="dropdown-item nav-link" href="/buyer_login/">Buyer Login</a></li>
+                <li><a class="dropdown-item nav-link" href="/seller_login/">Seller Login</a></li>
+                <li><a class="dropdown-item nav-link" href="/admin/">Staff Login</a></li>
+                </ul>
+            </strong>
+            </div>           
+            <a class="nav-link my-2" href="/buyer_signup/">Signup</a>
+
+            <a class="nav-link my-2" href="/weather/">Weather</a>
+            {% endif %}
+              <!-- Shopping Cart -->
+      
+        <a href="{% url 'view_cart' %}" class="nav-link" id="cartButton">
+            <span class="cart-icon-button">
+                <!-- <span class="shopping-cart"> -->
+                <span class="cart">
+                    <!-- <i class="fas fa-shopping-cart"></i>
+                    Cart&nbsp;<span class="cart-count">{{cart.items.count}}</span> -->
+                    Cart&nbsp;&nbsp;<i class="bi bi-cart3 cart-icon" style="font-size: 1.5rem;"></i> <!-- Bootstrap Cart Icon -->
+                    <span class="cart-count">{{cart.items.count}}</span>
+                <!-- <span style="color:red">(999)</span> -->
+                </span>
+            </span>
+             </a>
+            <!-- <a href="#"><i class="bi bi-cart3 text-red" style="font-size: 1.5rem;"></i></a> -->
+               <!-- Dark Mode Toggle -->
+        <button class="btn btn-outline-light ms-3 my-2" id="toggleDarkMode">
+            <i class="bi bi-moon"></i>
+        </button>
+        </div>
+
+      
+    </div>
+</nav>
+<!-- Category Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark navbar-category">
+    <div class="container-fluid">
+      
+        <!-- Navbar Links -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#categoryNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="categoryNav">
+            <ul class="navbar-nav mx-auto">
+                <!-- <li class="nav-item"><a class="nav-link" href="#">Electronics</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Fashion</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Home & Kitchen</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Beauty</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Sports</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Books</a></li> -->
+               {% for category in  main_categories %}
+               <li class="nav-item"><a class="nav-link" href="{% url 'marketplace' category.slug %}">{{ category.name }}</a></li> 
+
+               {% endfor %}
+            </ul>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<br>
+
+<div class="content-section col-md-8 col-md-offset-2">
+  
+  <form method="POST" style="border: 1px solid black; margin: 2%; padding:3%; border-radius:1%;">
+    {% csrf_token %}
+    <center>
+     
+      <sub> <h4>Already have an account ? <a href="{% url "login" %}" style="text-decoration: none; color: blue; padding:2%; cursor:pointer;">Login</a></h4> </sub>
+    <h2>Create User account to register</h2>
+    <fieldset class="form-group">
+      {{ form|crispy}}
+      <input type='hidden', id='parent_id', value={{user_id}}>
+      <input type='hidden', id='user_id', value={{user_id}}>
+      <input type='hidden' id='tc', value='0'>
+
+    </fieldset>
+
+  <!-- Trigger the modal with a button -->
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Read the Terms and Conditions</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h3 class="modal-title col-lg-12 col-md-12 col-sm-12 col-xs-12">Read the Terms and Conditions</h3>
+          
+        </div>
+        <div class="modal-body">
+          <p> www.xxxxcom (the "Site") is owned and operated by Vadiraja. ("we" or "us" or Vadiraja),
+
+Please note that this is a business/commercial site and can be accessed only by a valid account holder. Your access and use of the Site is subject to the following terms and conditions ("Website Terms and Conditions") and all applicable laws. By accessing and browsing this Site, you accept, without limitation or qualification, the Website Terms and Conditions. If you do not agree with any of the below Terms and Conditions, do not use this Site.
+
+We reserve the right, in our sole discretion, to modify, alter or otherwise update these Website Terms and Conditions at any time and you agree to be bound by such modifications, alterations or updates.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Accept and Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+    <input type="checkbox" id="terms_accept_id" onclick="chkBoxClick()">
+     I Accept all Terms & Conditions to register.
+<br>
+<!-- <p id='demo1'> Check Box Value </p> -->
+      <button style="background: black; padding:2%; font-size: 2rem; color:white;" class="btn btn-outline-info" type="submit"><span class="glyphicon glyphicon-check"></span> &nbsp; Create Account</button>
+</center>
+  </form>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+  function chkBoxClick(){
+
+  // var url1 = 'terms_conditions';
+  var url1 = "{% url 'ajax_tc' %}"
+    
+  var checkBox = document.getElementById("terms_accept_id");
+  var checkBoxValue;
+
+   if (checkBox.checked == true){
+          
+          document.getElementById('tc').value = "1";
+
+          // document.getElementById('demo1').innerHTML =  document.getElementById('tc').value;
+       
+    } else {
+ 
+     document.getElementById('tc').value = "0";
+     document.getElementById('demo1').innerHTML =  document.getElementById('tc').value;
+   }
+      checkBoxValue = document.getElementById('tc').value;
+
+      $.ajax({
+        url: url1,
+        data:{
+                 'data': checkBoxValue
+        },
+        success: function( data ) 
+        {
+            //html(data);
+            // document.getElementById(demo).innerHTML = url1;
+           // $( '#like'+ catid ).remove();
+            //$( '#ansdetails' ).text(data);
+        }
+     });
+     
+    }
+
+  
+
+</script>
+
+{% endblock content %}

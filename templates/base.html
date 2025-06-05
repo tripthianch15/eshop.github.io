@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Marketplace</title>
+   
+    <!-- Bootstrap & Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+ 
+    <link href="{% static 'css/main.css' %}" rel="stylesheet">
+    <link href="{% static 'css/chatbox.css' %}" rel="stylesheet">
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+         /* .navbar {
+    background-color: gold; }    /* Background color */
+
+
+.navbar .nav-link {
+    color: white !important;/* Default text color */
+    /*transition: color 0.3s; */ /* Smooth transition for color change */
+}
+
+
+
+.navbar .nav-link:hover {
+    color: red !important; /* Change text color on hover */
+}
+.navbar .nav-link:active {
+    color: red !important; /* Change text color on hover */
+}
+
+
+
+.navbar .nav-link:focus {
+    color: blue; /* Focus color */
+}
+
+.product-img-top{
+    width:100%;
+    height:200px;
+}
+img{
+    width:100%;
+    height:200px;
+}
+.card-title{
+    color:black !important; 
+}
+.card-text{
+    color:black !important; 
+}
+
+.product{
+    width:310px;
+    height:540px !important;
+    color:black;
+ 
+}
+
+.product-details-img{
+    width:100%;
+    height:100%;
+    color:black;
+
+}
+.txt{
+    color:black !important
+}
+  .quantity-container {
+    display: inline-flex;
+    align-items: center;
+   
+    overflow: hidden;
+}
+
+.quantity-control {
+    display: inline-flex;
+    align-items: center;
+
+    border: 1px solid #ccc;
+
+    overflow: hidden;
+}
+
+.quantity-control .decrement,
+.quantity-control .increment {
+    background-color: #f0f0f0;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 16px;
+    flex-shrink: 0;
+}
+
+.quantity-control .quantity-input {
+    width: 40px !important;
+    text-align: center;
+    border: none;
+    outline: none;
+    padding: 5px;
+    margin: 0; /* Removes any default gap */
+}
+
+.yellow-para {
+    color: yellow !important;
+    font-weight: 500 !important;
+}
+
+.green-para {
+    color: green !important;
+    font-weight: 500 !important;
+}
+
+  /* Container for input and buttons */
+  .number-input-container {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    width: 120px;
+ 
+}
+
+/* Input field */
+.number-input {
+    width: 60px;
+    height: 36px;
+    text-align: center;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    padding: 0;
+    margin: 0;
+    -moz-appearance: textfield;
+}
+
+/* Remove input arrows in some browsers */
+.number-input::-webkit-outer-spin-button,
+.number-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Buttons */
+.spinner-btn {
+    background-color: orange;
+    color: white;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 18px;
+    border: none;
+    outline: none;
+}
+
+/* Hover effect */
+.spinner-btn:hover {
+    background-color: darkorange;
+}
+
+.site_clients{padding-top: 40px; padding-bottom: 50px; background-color: var(--tes-bg-color-3);}
+.site_title_1{font-size: 1.8rem; line-height: 2.4rem;  text-transform: uppercase; font-weight: 400; position: relative; margin-bottom: 25px; letter-spacing: 2px}
+.site_title_1 span{position: absolute; width: 65px; height: 6px; background: linear-gradient(105deg, rgba(252,76,150,1) 0%, rgba(255,98,28,1) 100%); border-radius: 5px; bottom: -10px;}
+.site_title_1 i{color: #fff; font-style: normal;}
+
+    </style>
+
+       
+</head>
+<body>
+
+        {% block header %}
+        {% include 'header.html' %}
+        {% endblock header %}
+
+<!-- Main Content -->
+<main>
+
+    <h3 class="site_title_1 title_2" 
+    id="thank-text">    
+    <b>    
+    {% block page_heading %}
+
+    {% endblock page_heading%}
+   </b></h3> 
+
+    {% block content %}
+  
+    <!-- Content will be injected here -->
+    {% include 'products/tenants.html'%} 
+    {% include 'products/marketplace.html'%}  
+    {% endblock %}
+
+</main>
+
+    <!-- Footer -->
+    <footer>
+        {% block footer %}
+            {% include 'footer.html' %}
+        {% endblock footer %}
+    </footer>
+   
+
+
+<!-- Embed Chatbox -->
+<!-- Floating Chat Button -->
+{% include 'chatbot.html' %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    // Dark Mode Toggle
+    document.getElementById("toggleDarkMode").addEventListener("click", function() {
+        document.body.classList.toggle("dark-mode");
+    });
+ </script>
+ <script>
+
+ $('#category').change(function() {
+     var categorySlug = $(this).val();
+     //alert(categorySlug);
+     // Check if a category is selected
+     if (categorySlug) {
+         $.ajax({
+             url: '/get-products/',  // URL to send request to
+             type: 'GET',
+             data: {
+                 'slug': categorySlug
+             },
+             success: function(response) {
+                 // Clear previous products   
+                 //alert("successs")  ;         
+                   //  alert(response);
+                        // Clear previous products
+                        document.getElementById("itemsDisplay").innerHTML = ""; // Clear previous content
+                     // Display the fetched products
+                     document.getElementById("itemsDisplay").innerHTML = response; // Set new content
+
+             },
+             error: function(xhr, status, error) {
+                 console.error("An error occurred: " + error);
+             }
+         });
+     }
+ });
+
+ let cartCount = 0;
+
+ function updateCartCount(newCount) {
+     cartCount = newCount;
+     document.getElementById('cartCount').innerText = cartCount;
+ }
+
+ // Makes ajax  call to add item to cart
+ function addToCart(productId) {
+         //alert("Product ID: "+productId);
+         let quantity = document.getElementById('quantity-' + productId).value;
+         //alert("Quantity: "+quantity);
+         if (quantity && quantity > 0) {
+             // Send quantity and product ID to backend (via Ajax or form submission)
+             //console.log('Add product ID:', productId, 'with quantity:', quantity);
+             // Example: Send to backend here
+             $.ajax({
+             url: '/add_to_cart/',  // URL to send request to
+             type: 'GET',
+             data: {
+                 "quantity": quantity,
+                 "productId": productId
+             },
+             success: function(response) {
+                //alert("Cart: "+response);
+                 window.location.reload();
+
+             },
+             error: function(xhr, status, error) {
+                 console.error("An error occurred: " + error);
+             }
+         });
+     }
+     else {
+             alert('Please enter a valid quantity.');
+         }
+     }
+ 
+     
+     // to update cart item quantity
+     // Used by products.html, products_details.html, view_cart.html
+     function updateCartQuantity(change, elementId,productId) {
+         const quantityInput = document.getElementById(elementId);
+         let currentValue = parseInt(quantityInput.value);
+         //alert("updateCartQuantity: currentValue: "+currentValue);
+         if (!isNaN(currentValue)) {
+             let newValue = currentValue + change;
+
+             // Ensure the value is not negative or below the minimum of 1
+             if (newValue < 1) {
+                 newValue = 1;
+             }
+
+             quantityInput.value = newValue;
+             //alert("updateCartQuantity: newValue: "+newValue);
+             //alert("quantityInput: "+quantityInput);
+             //alert("quantityInput.value: "+quantityInput.value);
+             //alert("Product I: "+productId);
+             $.ajax({
+             url: '/update_cart/',  // URL to send request to
+             type: 'GET',
+             data: {
+                 "quantity": newValue,
+                 "productId": productId
+             },
+             success: function(response) {
+                 //alert(response);
+                 window.location.reload();
+
+
+             },
+             error: function(xhr, status, error) {
+                 console.error("An error occurred: " + error);
+             }
+         });
+         }
+     }
+ 
+     // to update cart item quantity
+     // Used by products.html, products_details.html, view_cart.html
+     function updateQuantity(change, elementId,productId) {
+         const quantityInput = document.getElementById(elementId);
+         let currentValue = parseInt(quantityInput.value);
+         //alert("updateQuantity: currentValue: "+currentValue);
+         if (!isNaN(currentValue)) {
+             let newValue = currentValue + change;
+
+             // Ensure the value is not negative or below the minimum of 1
+             if (newValue < 1) {
+                 newValue = 1;
+             }
+
+             quantityInput.value = newValue;
+             
+         }
+     }
+ </script>
+
+</body>
+</html>

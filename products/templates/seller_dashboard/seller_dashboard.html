@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}  <!-- Load the static template tag -->
+
+
+{% block content %}
+
+
+    <!-- Main Content -->
+    <main class="main-content text-white">
+        <div class="container"></div>
+ 
+        <section>
+            <p>Total Products: {{ products.count }}</p>
+            <p>Total Orders: {{ orders.count }}</p>
+        </section>
+
+        <section>
+ 
+            {% include 'seller_dashboard/seller_recent_orders.html' %}
+
+        </section>
+    </div>
+    </main>
+
+{% endblock content %}

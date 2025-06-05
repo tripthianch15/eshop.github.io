@@ -1,0 +1,20 @@
+<div class="number-input-container my-1" id="quantity-input-{{ product.product_id  }}">
+    <button class="spinner-btn" onclick="updateQuantity(-1, 'quantity-{{ product.product_id }}','{{ product.product_id }}')">-</button>
+    <input type="number" id="quantity-{{ product.product_id }}" class="number-input" value=1 min=1 oninput="validatePositiveInteger(this)">
+    <button class="spinner-btn" onclick="updateQuantity(1, 'quantity-{{ product.product_id }}','{{ product.product_id }}')">+</button>
+
+</div>
+<button onclick="addToCart('{{product.product_id}}')" class="btn btn-primary">Add to cart</button>
+
+<script>
+
+    // Function to validate positive integer input
+    function validatePositiveInteger(input) {
+        if (input.value < 1) {
+            input.value = 1;
+        }
+    }
+
+</script>
+
+

@@ -1,0 +1,335 @@
+/*  Header */
+   
+
+/* Sticky Top Navigation */
+.navbar-top {
+    background-color: black;
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1050;
+    padding: 8px 0;
+}
+
+.navbar-top a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+}
+   
+/* Category Navbar */
+.navbar-category {
+    background-color: #37475a;
+    padding: 10px 0;
+}
+.navbar-category a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+}
+
+/* Carousel Styling */
+.carousel-inner img {
+    height: 300px;
+    object-fit: cover;
+}
+
+       /* Search Bar */
+.search-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+    background-color: white;
+    border-radius: 5px;
+
+}
+.search-category {
+    width: 20%;
+    border-right: 1px solid #ddd;
+    border-radius: 0;
+}
+.search-input {
+    width: 60%;
+    border: none;
+    padding: 8px;
+    border-radius: 0;
+}
+.search-button {
+    width: 20%;
+    background-color: #ff9900;
+    border: none;
+    color: white;
+    padding: 8px;
+    border-radius: 0;
+}
+.search-button i {
+    font-size: 1.2rem;
+}
+/* Dark Mode */
+.dark-mode {
+    background-color: #121212;
+    color: white;
+}
+
+
+/* Cart */
+.cart-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.cart-icon {
+    font-size: 1.5rem;
+    color: white;
+    margin-right: 5px;
+}
+.cart-count {
+    background-color: red;
+    color: white;
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 50%;
+    position: absolute;
+    top: -3px;
+    right: -8px;
+}
+.dark-mode .footer {
+    background-color: #333 !important;
+    color: white;
+}
+
+.dark-mode .slide_section {
+    background-color: #121212;
+    color: white;
+}
+
+.small-container {
+max-width: 600px; /* Adjust width as needed */
+margin: auto; /* Centers the container */
+}
+
+/* Dropdown styling */
+.city-select {
+width: 100%;
+padding: 8px;
+margin-bottom: 10px;
+border: 1px solid #ccc;
+border-radius: 5px;
+font-size: 16px;
+font-family: 'Arial', sans-serif;
+}
+
+/*  */
+/* Scrollable Second Navigation Bar */
+.scroll-container {
+display: flex;
+align-items: center;
+background: #f1f1f1;
+padding: 10px;
+position: relative;
+overflow: hidden;
+height:150px;
+
+}
+
+.scroll-nav {
+display: flex;
+overflow-x: auto;
+white-space: nowrap;
+scrollbar-width: none;
+-ms-overflow-style: none;
+flex-grow: 1;
+height:150px;
+}
+
+.scroll-nav::-webkit-scrollbar {
+display: none;
+}
+
+.scroll-nav a {
+padding: 10px 15px;
+text-decoration: none;
+color: black;
+font-weight: bold;
+
+}
+
+.scroll-nav img {
+padding: 10px 15px;
+height:150px;
+width:150px;
+
+}
+
+.scroll-nav a:hover {
+background: #ddd;
+}
+
+/* Scroll Buttons */
+.scroll-left, .scroll-right {
+background: #666;
+color: white;
+border: none;
+padding: 10px;
+cursor: pointer;
+}
+
+.scroll-left:hover, .scroll-right:hover {
+background: #444;
+}
+/*  */
+.product-image {
+width: 50px;
+height: 50px;
+object-fit: cover;
+border-radius: 4px;
+}
+
+/* Profile Dropdown */
+/* PROFILE & CART ICONS */
+.nav-icons {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+/* Profile Dropdown */
+/* .profile-dropdown {
+    position: relative;
+    cursor: pointer;
+} */
+
+.profile-dropdown {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.profile-dropdown i {
+    font-size: 18px;
+}
+
+/* .profile-dropdown .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    color: black;
+    min-width: 150px;
+    right: 0;
+    top: 30px;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+    border-radius: 4px;
+} */
+
+
+.profile-dropdown .dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: white;
+    min-width: 150px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 10px 15px;
+    text-decoration: none;
+    display: block;
+}
+
+.profile-dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a {
+    padding: 10px;
+    display: block;
+    text-decoration: none;
+    color: black;
+}
+
+/* .dropdown-content a:hover {
+    background-color: #ddd;
+} */
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+
+
+
+
+
+.cart-bar{
+    background-color: #e68a00!important;
+    padding: 4px 8px;
+    
+ }
+/* Cart Icon */
+.cart {
+    position: relative;
+    cursor: pointer;
+    
+  
+}
+
+.cart i {
+    font-size: 18px;
+}
+
+.cart-count{
+    /* position: absolute; */
+    position: relative;
+    /* top: 0px;
+    right: 5px; */
+    /* background-color: red;  */
+    background-color:green; 
+    color: white;
+    /* color: red; */
+    font-weight: bolder;
+    font-size: 14px;
+    border-radius: 50%;
+    padding: 2px 6px;
+     }
+/* Shopping cart icon inside a button */
+.cart-icon-button {
+    background: #ff9900;
+    padding: 10px 15px;
+    border-radius: 5px;
+    color: white;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+}
+
+.cart-icon-button:hover {
+    background: #e68a00; /* Darker orange on hover */
+}
+
+:root {
+    --white: #ffffff;
+    --black: #000000;
+    --tes-primary: #ff4207;
+    --tes-secondary: #955aff;
+    --tes-bg-color-1: #050607;
+    --tes-bg-color-2: #262678;
+    --tes-bg-color-3: #f1faff;
+    --tes-white: #ffffff;
+    --tes-black: #000000;
+    --tes-text-highlight: #df3a62;
+    --tes-grad-bg-1: linear-gradient(105deg, rgba(252,76,150,1) 0%, rgba(255,98,28,1) 100%);
+    --tes-grad-bg-2: linear-gradient(105deg, rgba(38,38,120,1) 0%, rgba(252,76,150,1) 100%);
+    --tes-btn-normal: rgba(140,90,255,0.3);
+    --tes-btn-hover: rgba(140,90,255,0.5);
+    --tes-btn-selected: rgba(140,90,255,1);
+    --tes-btn-hov: #ff4207;
+    --tes-sdbr-bg: rgba(38,38,120,0.5);
+    }
+

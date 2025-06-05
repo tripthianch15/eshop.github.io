@@ -1,0 +1,45 @@
+
+<!-- <div class="container mt-5"> -->
+<style>
+    .main_category{
+    padding: 6px;
+     margin-top: 8px;
+     font-size: 17px;
+     border: none;
+     cursor: pointer;
+     align-items: left;
+     width: 200px !important
+   }
+
+   .form-group {
+    display: flex;
+    align-items: center;
+    border: none;
+}   .form-group {
+    display: flex;
+    align-items: center;
+    border: none;
+}
+
+#selectAllButton {
+    margin-right: 10px; /* Adds space between button and select box */
+}
+
+</style>
+
+
+    <form id="categoryForm">
+        <div class="form-group d-flex align-items-center">
+            <!-- <button type="button" id="selectAllButton" class="btn btn-secondary mr-2">All</button> -->
+            <select id="category" class="main_category btm btn-secondary" name="options">
+                <option value="all">All</option>
+                
+                {% for category in main_categories %}
+                    <option value="{{ category.slug }}">{{ category.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </form>
+
+
+

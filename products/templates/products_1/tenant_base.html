@@ -1,0 +1,928 @@
+{% extends 'base.html' %}
+{% block content %}
+    <meta charset="UTF-8">
+    <title>VBQuest.com</title>    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+    <style>
+        /* line 7, ../scss/styles.scss */
+            html, body, div, span, applet, object, iframe,
+            h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+            a, abbr, acronym, address, big, cite, code,
+            del, dfn, em, img, ins, kbd, q, s, samp,
+            small, strike, strong, sub, sup, tt, var,
+            b, u, i, center,
+            dl, dt, dd, ol, ul, li,
+            fieldset, form, label, legend,
+            table, caption, tbody, tfoot, thead, tr, th, td,
+            article, aside, canvas, details, embed,
+            figure, figcaption, footer, header, hgroup,
+            menu, nav, output, ruby, section, summary,
+            time, mark, audio, video {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font-size: 100%;
+            font: inherit;
+            vertical-align: baseline;
+            }
+
+            /* HTML5 display-role reset for older browsers */
+            /* line 28, ../scss/styles.scss */
+            article, aside, details, figcaption, figure,
+            footer, header, hgroup, menu, nav, section {
+            display: block;
+            }
+
+            /* line 32, ../scss/styles.scss */
+            body {
+            line-height: 1;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            }
+
+            /* line 37, ../scss/styles.scss */
+            ol, ul {
+            list-style: none;
+            }
+
+            /* line 40, ../scss/styles.scss */
+            blockquote, q {
+            quotes: none;
+            }
+
+            /* line 43, ../scss/styles.scss */
+            blockquote:before, blockquote:after,
+            q:before, q:after {
+            content: '';
+            content: none;
+            }
+
+            /* line 48, ../scss/styles.scss */
+            table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            }
+
+            .service_list{
+                flex: 1 0 48%; 
+                height: auto;
+                text-align: center;}
+            .site_service_header{
+                padding-left: 30px; 
+                padding-right: 30px
+                }
+
+            .service_list{
+                flex: 1 0 18%;
+                margin: 3px; 
+                background: var(--black); background-size: cover;  
+                height: 315px;  
+                color: white;  
+                display: flex;  
+                align-items: center;  
+                justify-content: center; 
+                border-radius: 5px; 
+                position: relative; 
+                overflow: hidden;
+                width:100px !important;
+                max-width: 255px
+            }
+
+            .service_list img{width: 100%;}
+            .service_list_title{position: absolute; width: 100%; bottom: 0; padding: 30px 20px ; text-align: center; color: var(--white); font-size: 1rem; line-height: 1.6rem; font-weight: 700; background: rgb(2,0,36); background: linear-gradient(180deg, rgba(2,0,36,0) 0%, rgba(38,38,120,1) 100%); min-height:200px; display: flex; align-items: end; text-align: center; justify-content: center; z-index: 1; transition: .3s ease-out}
+            .service_list:hover .service_list_title{
+                padding-bottom: 50px; 
+                transition: .4s 
+                ease-out; 
+                height: 100%;
+            }
+
+            /* line 54, ../scss/styles.scss */
+            .main-section .list-container {
+            /* width: 1000px; */
+            margin: 20px auto;
+            text-align: center;
+            }
+            /* line 58, ../scss/styles.scss */
+            .main-section .list-container > h2 {
+            color: #1f1f2f;
+            font-size: 36px;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+            z-index: 3;
+            margin-bottom: 80px;
+            margin-top: 50px;
+            }
+            /* line 67, ../scss/styles.scss */
+            .main-section .list-container > h2 b {
+            color: #6739ff;
+            position: relative;
+            z-index: 3;
+            }
+            /* line 73, ../scss/styles.scss */
+            .main-section .list-container > p {
+            color: #4a4a5e;
+            margin-bottom: 30px;
+            }
+            /* line 77, ../scss/styles.scss */
+            
+       
+
+            .main-section .list-container ul {
+            text-align: center;
+            display: flex;
+            /* width: 700px; */
+            width: 800px;
+            margin: 0 auto;
+            /* height: 310px; */
+            /* height: 400px; */
+            gap: 4% 2%;
+            position: relative;
+            z-index: 2;
+            /* grid-template-columns: repeat(5, minmax(18%, 1fr)); */
+            /* grid-template-rows: repeat(2, minmax(46%, 1fr)); */
+            }
+            .main-section .list-container li {
+                width:100%;
+         
+            }
+            /* line 88, ../scss/styles.scss */
+            .main-section .list-container ul li {
+            transition: all .5s ease;
+            padding: 20px 0px 10px 0px;
+            background: #fbf8ff;
+            border-radius: 15px;
+            }
+            .main-section .list-container .thought_list {
+            transition: all .5s ease !important;
+            padding: 20px 0px 10px 0px !important;           
+            border-radius: 15px !important;
+            }
+            
+            /* line 93, ../scss/styles.scss */
+            .main-section .list-container ul li img {
+            width: 70px;
+            margin: 0 auto 5px auto;
+            border-radius: 50%;
+            }
+            /* line 98, ../scss/styles.scss */
+            .main-section .list-container ul li a {
+            text-decoration: none;
+            color: #1f1f2f;
+            font-size: 14px;
+            }
+            /* line 102, ../scss/styles.scss */
+            .main-section .list-container ul li a p {
+            text-overflow: ellipsis;
+            max-width: 72%;
+            overflow: hidden;
+            text-align: center;
+            height: 16px;
+            margin: 10px auto 0 auto;
+            }
+            /* line 111, ../scss/styles.scss */
+            .main-section .list-container ul li:hover {
+            box-shadow: 0 3px 20px 6px #012a660a;
+            background: white;
+            transform: translateY(-5px);
+            }
+            .main-section .list-container .thought_list:hover {
+            box-shadow: 0 3px 20px 6px #012a660a !important;
+            background: orangered !important;
+            transform: translateY(-10px) !important;
+            }
+            /* line 118, ../scss/styles.scss */
+            .main-section .list-container .dots-container {
+            height: 500px;
+            width: 500px;
+            position: relative;
+            transform-style: preserve-3d;
+            margin: -382px auto 0 auto;
+            animation: spin 10s linear infinite;
+            }
+            /* line 125, ../scss/styles.scss */
+            .main-section .list-container .dots-container span {
+            width: 0.3em;
+            height: 0.3em;
+            color: #e9e3fd;
+            background: #e9e3fd;
+            opacity: 0.2;
+            border-radius: 50%;
+            position: absolute;
+            top: calc(50% - 15em / 100);
+            left: calc(50% - 15em / 100);
+            transform-style: preserve-3d;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(1) {
+            transform: translate3d(0.27694em, 0.38118em, 14.9926em);
+            animation: beat 2s linear infinite;
+            animation-delay: -10ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(2) {
+            transform: translate3d(-0.29105em, 0.89576em, 14.9704em);
+            animation: beat 2s linear infinite;
+            animation-delay: -20ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(3) {
+            transform: translate3d(-1.34253em, 0.43622em, 14.93343em);
+            animation: beat 2s linear infinite;
+            animation-delay: -30ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(4) {
+            transform: translate3d(-1.52095em, -1.10504em, 14.88172em);
+            animation: beat 2s linear infinite;
+            animation-delay: -40ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(5) {
+            transform: translate3d(0em, -2.34652em, 14.81533em);
+            animation: beat 2s linear infinite;
+            animation-delay: -50ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(6) {
+            transform: translate3d(2.27392em, -1.6521em, 14.73431em);
+            animation: beat 2s linear infinite;
+            animation-delay: -60ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(7) {
+            transform: translate3d(3.112em, 1.01115em, 14.63875em);
+            animation: beat 2s linear infinite;
+            animation-delay: -70ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(8) {
+            transform: translate3d(1.15274em, 3.54777em, 14.52875em);
+            animation: beat 2s linear infinite;
+            animation-delay: -80ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(9) {
+            transform: translate3d(-2.4598em, 3.38563em, 14.40441em);
+            animation: beat 2s linear infinite;
+            animation-delay: -90ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(10) {
+            transform: translate3d(-4.63525em, 0em, 14.26585em);
+            animation: beat 2s linear infinite;
+            animation-delay: -100ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(11) {
+            transform: translate3d(-2.98658em, -4.11067em, 14.11321em);
+            animation: beat 2s linear infinite;
+            animation-delay: -110ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(12) {
+            transform: translate3d(1.70635em, -5.25161em, 13.94665em);
+            animation: beat 2s linear infinite;
+            animation-delay: -120ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(13) {
+            transform: translate3d(5.66565em, -1.84088em, 13.76632em);
+            animation: beat 2s linear infinite;
+            animation-delay: -130ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(14) {
+            transform: translate3d(5.16694em, 3.754em, 13.57241em);
+            animation: beat 2s linear infinite;
+            animation-delay: -140ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(15) {
+            transform: translate3d(0em, 6.80986em, 13.3651em);
+            animation: beat 2s linear infinite;
+            animation-delay: -150ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(16) {
+            transform: translate3d(-5.8462em, 4.24752em, 13.1446em);
+            animation: beat 2s linear infinite;
+            animation-delay: -160ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(17) {
+            transform: translate3d(-7.26191em, -2.35954em, 12.91113em);
+            animation: beat 2s linear infinite;
+            animation-delay: -170ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(18) {
+            transform: translate3d(-2.48369em, -7.64402em, 12.66492em);
+            animation: beat 2s linear infinite;
+            animation-delay: -180ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(19) {
+            transform: translate3d(4.95576em, -6.82103em, 12.40621em);
+            animation: beat 2s linear infinite;
+            animation-delay: -190ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(20) {
+            transform: translate3d(8.81678em, 0em, 12.13525em);
+            animation: beat 2s linear infinite;
+            animation-delay: -200ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(21) {
+            transform: translate3d(5.40387em, 7.43778em, 11.85233em);
+            animation: beat 2s linear infinite;
+            animation-delay: -210ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(22) {
+            transform: translate3d(-2.95462em, 9.09339em, 11.5577em);
+            animation: beat 2s linear infinite;
+            animation-delay: -220ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(23) {
+            transform: translate3d(-9.43417em, 3.06535em, 11.25167em);
+            animation: beat 2s linear infinite;
+            animation-delay: -230ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(24) {
+            transform: translate3d(-8.30715em, -6.0355em, 10.93453em);
+            animation: beat 2s linear infinite;
+            animation-delay: -240ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(25) {
+            transform: translate3d(0em, -10.6066em, 10.6066em);
+            animation: beat 2s linear infinite;
+            animation-delay: -250ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(26) {
+            transform: translate3d(8.84622em, -6.42716em, 10.26821em);
+            animation: beat 2s linear infinite;
+            animation-delay: -260ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(27) {
+            transform: translate3d(10.70097em, 3.47696em, 9.91968em);
+            animation: beat 2s linear infinite;
+            animation-delay: -270ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(28) {
+            transform: translate3d(3.57153em, 10.99202em, 9.56136em);
+            animation: beat 2s linear infinite;
+            animation-delay: -280ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(29) {
+            transform: translate3d(-6.96662em, 9.58873em, 9.19361em);
+            animation: beat 2s linear infinite;
+            animation-delay: -290ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(30) {
+            transform: translate3d(-12.13525em, 0em, 8.81678em);
+            animation: beat 2s linear infinite;
+            animation-delay: -300ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(31) {
+            transform: translate3d(-7.29219em, -10.03683em, 8.43125em);
+            animation: beat 2s linear infinite;
+            animation-delay: -310ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(32) {
+            transform: translate3d(3.91368em, -12.04505em, 8.0374em);
+            animation: beat 2s linear infinite;
+            animation-delay: -320ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(33) {
+            transform: translate3d(12.27921em, -3.98976em, 7.63562em);
+            animation: beat 2s linear infinite;
+            animation-delay: -330ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(34) {
+            transform: translate3d(10.6342em, 7.7262em, 7.22631em);
+            animation: beat 2s linear infinite;
+            animation-delay: -340ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(35) {
+            transform: translate3d(0em, 13.3651em, 6.80986em);
+            animation: beat 2s linear infinite;
+            animation-delay: -350ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(36) {
+            transform: translate3d(-10.98031em, 7.97766em, 6.38669em);
+            animation: beat 2s linear infinite;
+            animation-delay: -360ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(37) {
+            transform: translate3d(-13.09255em, -4.25403em, 5.95722em);
+            animation: beat 2s linear infinite;
+            animation-delay: -370ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(38) {
+            transform: translate3d(-4.30975em, -13.26405em, 5.52187em);
+            animation: beat 2s linear infinite;
+            animation-delay: -380ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(39) {
+            transform: translate3d(8.29554em, -11.41783em, 5.08107em);
+            animation: beat 2s linear infinite;
+            animation-delay: -390ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(40) {
+            transform: translate3d(14.26585em, 0em, 4.63525em);
+            animation: beat 2s linear infinite;
+            animation-delay: -400ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(41) {
+            transform: translate3d(8.4667em, 11.65341em, 4.18487em);
+            animation: beat 2s linear infinite;
+            animation-delay: -410ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(42) {
+            transform: translate3d(-4.48963em, 13.81766em, 3.73035em);
+            animation: beat 2s linear infinite;
+            animation-delay: -420ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(43) {
+            transform: translate3d(-13.92228em, 4.52362em, 3.27215em);
+            animation: beat 2s linear infinite;
+            animation-delay: -430ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(44) {
+            transform: translate3d(-11.92031em, -8.66061em, 2.81072em);
+            animation: beat 2s linear infinite;
+            animation-delay: -440ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(45) {
+            transform: translate3d(0em, -14.81533em, 2.34652em);
+            animation: beat 2s linear infinite;
+            animation-delay: -450ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(46) {
+            transform: translate3d(12.03956em, -8.74726em, 1.88em);
+            animation: beat 2s linear infinite;
+            animation-delay: -460ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(47) {
+            transform: translate3d(14.20254em, 4.61468em, 1.41162em);
+            animation: beat 2s linear infinite;
+            animation-delay: -470ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(48) {
+            transform: translate3d(4.62611em, 14.2377em, 0.94186em);
+            animation: beat 2s linear infinite;
+            animation-delay: -480ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(49) {
+            transform: translate3d(-8.81243em, 12.12927em, 0.47116em);
+            animation: beat 2s linear infinite;
+            animation-delay: -490ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(50) {
+            transform: translate3d(-15em, 0em, 0em);
+            animation: beat 2s linear infinite;
+            animation-delay: -500ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(51) {
+            transform: translate3d(-8.81243em, -12.12927em, -0.47116em);
+            animation: beat 2s linear infinite;
+            animation-delay: -510ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(52) {
+            transform: translate3d(4.62611em, -14.2377em, -0.94186em);
+            animation: beat 2s linear infinite;
+            animation-delay: -520ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(53) {
+            transform: translate3d(14.20254em, -4.61468em, -1.41162em);
+            animation: beat 2s linear infinite;
+            animation-delay: -530ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(54) {
+            transform: translate3d(12.03956em, 8.74726em, -1.88em);
+            animation: beat 2s linear infinite;
+            animation-delay: -540ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(55) {
+            transform: translate3d(0em, 14.81533em, -2.34652em);
+            animation: beat 2s linear infinite;
+            animation-delay: -550ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(56) {
+            transform: translate3d(-11.92031em, 8.66061em, -2.81072em);
+            animation: beat 2s linear infinite;
+            animation-delay: -560ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(57) {
+            transform: translate3d(-13.92228em, -4.52362em, -3.27215em);
+            animation: beat 2s linear infinite;
+            animation-delay: -570ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(58) {
+            transform: translate3d(-4.48963em, -13.81766em, -3.73035em);
+            animation: beat 2s linear infinite;
+            animation-delay: -580ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(59) {
+            transform: translate3d(8.4667em, -11.65341em, -4.18487em);
+            animation: beat 2s linear infinite;
+            animation-delay: -590ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(60) {
+            transform: translate3d(14.26585em, 0em, -4.63525em);
+            animation: beat 2s linear infinite;
+            animation-delay: -600ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(61) {
+            transform: translate3d(8.29554em, 11.41783em, -5.08107em);
+            animation: beat 2s linear infinite;
+            animation-delay: -610ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(62) {
+            transform: translate3d(-4.30975em, 13.26405em, -5.52187em);
+            animation: beat 2s linear infinite;
+            animation-delay: -620ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(63) {
+            transform: translate3d(-13.09255em, 4.25403em, -5.95722em);
+            animation: beat 2s linear infinite;
+            animation-delay: -630ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(64) {
+            transform: translate3d(-10.98031em, -7.97766em, -6.38669em);
+            animation: beat 2s linear infinite;
+            animation-delay: -640ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(65) {
+            transform: translate3d(0em, -13.3651em, -6.80986em);
+            animation: beat 2s linear infinite;
+            animation-delay: -650ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(66) {
+            transform: translate3d(10.6342em, -7.7262em, -7.22631em);
+            animation: beat 2s linear infinite;
+            animation-delay: -660ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(67) {
+            transform: translate3d(12.27921em, 3.98976em, -7.63562em);
+            animation: beat 2s linear infinite;
+            animation-delay: -670ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(68) {
+            transform: translate3d(3.91368em, 12.04505em, -8.0374em);
+            animation: beat 2s linear infinite;
+            animation-delay: -680ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(69) {
+            transform: translate3d(-7.29219em, 10.03683em, -8.43125em);
+            animation: beat 2s linear infinite;
+            animation-delay: -690ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(70) {
+            transform: translate3d(-12.13525em, 0em, -8.81678em);
+            animation: beat 2s linear infinite;
+            animation-delay: -700ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(71) {
+            transform: translate3d(-6.96662em, -9.58873em, -9.19361em);
+            animation: beat 2s linear infinite;
+            animation-delay: -710ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(72) {
+            transform: translate3d(3.57153em, -10.99202em, -9.56136em);
+            animation: beat 2s linear infinite;
+            animation-delay: -720ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(73) {
+            transform: translate3d(10.70097em, -3.47696em, -9.91968em);
+            animation: beat 2s linear infinite;
+            animation-delay: -730ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(74) {
+            transform: translate3d(8.84622em, 6.42716em, -10.26821em);
+            animation: beat 2s linear infinite;
+            animation-delay: -740ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(75) {
+            transform: translate3d(0em, 10.6066em, -10.6066em);
+            animation: beat 2s linear infinite;
+            animation-delay: -750ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(76) {
+            transform: translate3d(-8.30715em, 6.0355em, -10.93453em);
+            animation: beat 2s linear infinite;
+            animation-delay: -760ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(77) {
+            transform: translate3d(-9.43417em, -3.06535em, -11.25167em);
+            animation: beat 2s linear infinite;
+            animation-delay: -770ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(78) {
+            transform: translate3d(-2.95462em, -9.09339em, -11.5577em);
+            animation: beat 2s linear infinite;
+            animation-delay: -780ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(79) {
+            transform: translate3d(5.40387em, -7.43778em, -11.85233em);
+            animation: beat 2s linear infinite;
+            animation-delay: -790ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(80) {
+            transform: translate3d(8.81678em, 0em, -12.13525em);
+            animation: beat 2s linear infinite;
+            animation-delay: -800ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(81) {
+            transform: translate3d(4.95576em, 6.82103em, -12.40621em);
+            animation: beat 2s linear infinite;
+            animation-delay: -810ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(82) {
+            transform: translate3d(-2.48369em, 7.64402em, -12.66492em);
+            animation: beat 2s linear infinite;
+            animation-delay: -820ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(83) {
+            transform: translate3d(-7.26191em, 2.35954em, -12.91113em);
+            animation: beat 2s linear infinite;
+            animation-delay: -830ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(84) {
+            transform: translate3d(-5.8462em, -4.24752em, -13.1446em);
+            animation: beat 2s linear infinite;
+            animation-delay: -840ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(85) {
+            transform: translate3d(0em, -6.80986em, -13.3651em);
+            animation: beat 2s linear infinite;
+            animation-delay: -850ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(86) {
+            transform: translate3d(5.16694em, -3.754em, -13.57241em);
+            animation: beat 2s linear infinite;
+            animation-delay: -860ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(87) {
+            transform: translate3d(5.66565em, 1.84088em, -13.76632em);
+            animation: beat 2s linear infinite;
+            animation-delay: -870ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(88) {
+            transform: translate3d(1.70635em, 5.25161em, -13.94665em);
+            animation: beat 2s linear infinite;
+            animation-delay: -880ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(89) {
+            transform: translate3d(-2.98658em, 4.11067em, -14.11321em);
+            animation: beat 2s linear infinite;
+            animation-delay: -890ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(90) {
+            transform: translate3d(-4.63525em, 0em, -14.26585em);
+            animation: beat 2s linear infinite;
+            animation-delay: -900ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(91) {
+            transform: translate3d(-2.4598em, -3.38563em, -14.40441em);
+            animation: beat 2s linear infinite;
+            animation-delay: -910ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(92) {
+            transform: translate3d(1.15274em, -3.54777em, -14.52875em);
+            animation: beat 2s linear infinite;
+            animation-delay: -920ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(93) {
+            transform: translate3d(3.112em, -1.01115em, -14.63875em);
+            animation: beat 2s linear infinite;
+            animation-delay: -930ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(94) {
+            transform: translate3d(2.27392em, 1.6521em, -14.73431em);
+            animation: beat 2s linear infinite;
+            animation-delay: -940ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(95) {
+            transform: translate3d(0em, 2.34652em, -14.81533em);
+            animation: beat 2s linear infinite;
+            animation-delay: -950ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(96) {
+            transform: translate3d(-1.52095em, 1.10504em, -14.88172em);
+            animation: beat 2s linear infinite;
+            animation-delay: -960ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(97) {
+            transform: translate3d(-1.34253em, -0.43622em, -14.93343em);
+            animation: beat 2s linear infinite;
+            animation-delay: -970ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(98) {
+            transform: translate3d(-0.29105em, -0.89576em, -14.9704em);
+            animation: beat 2s linear infinite;
+            animation-delay: -980ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(99) {
+            transform: translate3d(0.27694em, -0.38118em, -14.9926em);
+            animation: beat 2s linear infinite;
+            animation-delay: -990ms;
+            }
+            /* line 144, ../scss/styles.scss */
+            .main-section .list-container .dots-container span:nth-child(100) {
+            transform: translate3d(0em, 0em, -15em);
+            animation: beat 2s linear infinite;
+            animation-delay: -1000ms;
+            }
+            /* line 151, ../scss/styles.scss */
+            .main-section .list-container .dots-container span::before {
+            content: "";
+            display: block;
+            border-radius: 50%;
+            background: #e9e3fd;
+            width: 0.3em;
+            height: 0.3em;
+            animation: spin 10s linear reverse infinite;
+            }
+
+            @keyframes spin {
+            0% {
+                transform: rotateY(0);
+            }
+            100% {
+                transform: rotateY(360deg);
+            }
+            }
+            @keyframes beat {
+            0% {
+                font-size: 1em;
+            }
+            5% {
+                font-size: 1.1em;
+            }
+            10% {
+                font-size: 1em;
+            }
+            15% {
+                font-size: 1.1em;
+            }
+            25%,
+            100% {
+                font-size: 1em;
+            }
+            }
+           
+            
+            /* .tenant_service_title{text-align: center; color: var(--white); font-size: 1rem; line-height: 1.6rem; font-weight: 700; background: rgb(2,0,36); background: linear-gradient(180deg, rgba(2,0,36,0) 0%, rgba(38,38,120,1) 100%); min-height:200px; display: flex; align-items: end; text-align: center; justify-content: center; z-index: 1; transition: .3s ease-out}
+            .tenant_service_title:hover{padding-bottom: 50px; transition: .4s ease-out; height: 100%;}
+           */
+          
+           .tenant_service_title{
+          
+            color: var(--white) !important; 
+            font-size: 1rem !important; 
+            line-height: 1.6rem !important; 
+            font-weight: 700 !important;  
+            min-height:100px !important; 
+            display: flex !important; 
+            align-items: center !important; 
+            text-align: center !important; 
+            justify-content: center !important; 
+            z-index: 1 !important; 
+            transition: .3s ease-out !important;}
+           /* .tenant_service_title:hover{padding-bottom: 50px; transition: .4s ease-out; background: linear-gradient(180deg, rgba(2,0,36,0) 0%, rgba(38,38,120,1) 100%); height: 100%;} */
+           .tenant_service_title:hover{
+            padding-bottom: 50px !important; 
+            transition: .4s ease-out !important; 
+            color:white !important; 
+            height: 100% !important;}
+            
+          
+
+   </style>
+<!-- For class classic campaign -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-16492405797">
+</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-16492405797');
+</script>
+<!--  -->
+</head>
+<!-- <body style="background-color: rgb(44, 44, 44);"> -->
+    <body style="background-color:black;">
+
+{% block tenant_dashboard %}
+
+
+<style>h2, .main-section .list-container ul li a {color: #fff !important;}</style>
+<style>.main-section .list-container ul li {
+    background-color: #1a1a1a !important;}
+</style>
+<style>
+    /* .main-section .list-container ul li:hover {
+    background-color: #ffd400 !important;}  */
+    .main-section .list-container ul li:hover {
+    background-color: orangered !important;
+        color:black !important;} 
+    /* .main-section .list-container .dots-container span:before {
+        background: #ffd400 !important;}  */
+        .main-section .list-container .dots-container span:before {
+        background: orange !important;} 
+
+        /* .main-section .list-container > h2 b {
+            color: #ffd400 !important;} */
+
+            .main-section .list-container > h2 b {
+            color:orange !important;}
+</style>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1041043976795866"
+     crossorigin="anonymous"></script>
+{% endblock tenant_dashboard %}
+{% endblock content %}

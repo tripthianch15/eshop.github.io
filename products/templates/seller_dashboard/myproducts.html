@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}  <!-- Load the static template tag -->
+
+{% block content %}
+
+
+    <!-- Main Content -->
+
+        <div class="container text-white">
+        <section>
+     
+            <p>Total Products: {{ products.count }}</p>
+        
+        </section>
+
+        <section>
+            <h2>My Products</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Available Qty</th>
+                        <th>Price</th>
+                        <th>Discount</th>
+                        <th>Selling Price</th>
+                        <th>Image</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for product in products %}
+                    <tr>
+                        <td><a href="#" class="btn btn-sm btn-success">Edit</a></td>
+                        <td><a href="#"><i class="bi bi-trash"></i></a></td>
+                        <td>{{ product.product_name }}</td>
+                        <td>{{ product.quantity }} {{product.measurement}}</td>
+                        <td>{{ product.available_stock }} {{product.measurement}}</td>
+                        <td>{{product.currency}} {{ product.price }}</td>
+                        <td>{{product.currency}} {{ product.discount }}</td>
+                        <td>{{product.currency}} {{ product.selling_price }}</td>
+                        <td>
+                            {% if product.product_image %}
+                                <img src="{{ product.product_image.url }}" alt="{{ product.product_name }}" class="product-image">
+                            {% else %}
+                                <img src="{% static 'images/default-product.jpg' %}" alt="No image" class="product-image">
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+</div>
+
+{% endblock content %}

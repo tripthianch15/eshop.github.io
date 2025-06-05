@@ -1,0 +1,77 @@
+<style>h2, .main-section .list-container ul li a {color: #fff !important;}</style>
+<style>.main-section .list-container ul li {
+    background-color: #1a1a1a !important;}
+</style>
+<style>
+    /* .main-section .list-container ul li:hover {
+    background-color: #ffd400 !important;}  */
+    .main-section .list-container  ul li:hover {
+    background-color: orangered !important;
+        color:black !important;} 
+
+       .thought_list:hover {
+    background-color: orangered !important;
+        color:black !important;} 
+    /* .main-section .list-container .dots-container span:before {
+        background: #ffd400 !important;}  */
+        .main-section .list-container .dots-container span:before {
+        background: orange !important;} 
+
+        /* .main-section .list-container > h2 b {
+            color: #ffd400 !important;} */
+
+            .main-section .list-container > h2 b {
+            color:orange !important;}
+</style>
+<section class="main-section">
+<div class="container">
+    <h3 class="site_title_1 title_2 text-white" 
+            id="thank-text">
+              
+               <span></span>
+               <b>Explore ... </b></h3>
+    <div class="list-container">
+     <div class="row gx-3">           
+              
+        {% for tenant in tenants %}
+        {% if tenant.get_domain.domain == "localhost"  and tenant.get_domain.domain != current_domain %}
+        <!-- Don' display  -->
+        {% else %}
+        {% if tenant.name == "localhost" %}
+                <!-- Don' display  -->
+        {% else %}
+        <div class="col-lg-3 col-lg-3 row-eq-height">
+           
+            {% if tenant.get_domain.domain == "localhost"  and tenant.get_domain.domain == current_domain %}
+            <div class="full thought_list bg-dark">
+                <a href="{% url 'itjobs/' %}" class="docs-creator">                
+                    <p class="tenant_service_title">IT Jobs</p></a>
+              </div>  
+
+              <div class="full thought_list bg-dark">
+                <a href="{% url 'govtjobs/' %}" class="docs-creator">                
+                    <p class="tenant_service_title">Govt Jobs</p></a>
+              </div>  
+              
+            {% elif tenant.get_domain.domain == "localhost"  and tenant.get_domain.domain != current_domain %}
+            <!-- Don't display -->
+            
+            {% elif tenant.get_domain.domain == "vbquest.com" %}
+            <div class="full thought_list bg-dark">
+                <a href="/index/"  class="docs-creator">                
+                    <p class="tenant_service_title">Quizzes and Tests</p></a>
+           </div>
+            {% else %}
+            <div class="full thought_list bg-dark">
+                <a href="https://{{tenant.get_domain}}/" class="docs-creator">                
+                    <p class="tenant_service_title">{{tenant.name}}</p></a>
+           </div>
+            {% endif %}
+        </div>
+        {% endif %}
+        {% endif %}
+        {% endfor %}
+    </div>
+    </div>
+  </div>
+</section>

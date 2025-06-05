@@ -1,0 +1,48 @@
+
+<footer class="footer text-white mt-4">
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+<div class="row">
+    
+<div class="col-12 site_footer_logo ms-1 mx-4">
+    <a class="white" 
+    href="/">
+    <!-- <img src="#" class="img-fluid"> <span class="navbar-brand logo1-text-style px-1"> -->
+      <span class="navbar-brand logo1-text-style">
+        {% if request.session.title %}
+        <a class="nav-link website-title" id="home-menu" href="/"><i class="fa fa-home"></i>&nbsp;Roomify.com</a>
+        {% else %}
+           <!-- <b>VBQuest</b> -->
+           <a class="nav-link website-title" id="home-menu" href="/"><i class="fa fa-home"></i>&nbsp;Roomify.com</a>
+        {% endif %}
+        </span>
+ </span>
+    </a>
+  </div>
+  <div class="col-lg-4 col-md-4 site_quick_address mx-2">
+           
+<p class="my-2 mx-2">Developed by <span style="color:orangered;font-weight: 800;">Anchan Tripthi</span> </p>
+ <p class="my-4 mx-2"> Roomify.com is a Multi Vendor ECommerce platform for buying and selling products.</p>
+
+
+<p>&nbsp;Email: <a href="mailto:anchantripthi05@gmail.com">anchantripthi05@gmail.com</a></p>
+
+  </div>
+  
+<div class="col-lg-3 col-md-3 foot_menu_2">
+    <a href="/" class="nav-link">Product categories</a>
+    <a href="#" class="nav-link">Blog</a>
+
+  </div>
+  <div class="col-lg-3 col-md-3 foot_menu_2">
+    <a href="{% url 'about_us' %}" class="nav-link">
+        About&nbsp;Us
+      </a>
+      <a href="{% url 'contact_us' %}" class="nav-link">
+        Contact&nbsp;Us
+      </a>
+     
+  </div>
+</div>
+</nav>
+</footer>
+

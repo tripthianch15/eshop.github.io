@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load static %}  <!-- Load the static template tag -->
+
+{% block content %}
+   
+<div class="container" id="itemsDisplay">
+
+{% include 'products/products.html' %}
+</div>
+{% endblock %}

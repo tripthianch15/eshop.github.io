@@ -1,0 +1,472 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% load socialaccount %}
+
+{% block title %}Create User Account {% endblock %}
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+</head>
+{% block style %}
+    <style>
+      
+        .audio-style {
+            width:700px;
+            height:auto;
+        }
+
+ .txt {
+    font-family: sans-serif; 
+    color: white;
+    text-align: center;
+    font-size: 20px;
+    max-width: 500px;
+    position: relative;
+  }
+  .txt:before {
+    content: "";
+    display: block;
+    width: 210px;
+    height: 2px;
+    background: white;
+    left: 0;
+    top: 50%;
+    position: absolute;
+  }
+  .txt:after {
+    content: "";
+    display: block;
+    width: 210px;
+    height: 2px;
+    background:white;
+    right: 0;
+    top: 50%;
+    position: absolute;
+  }
+ 
+
+select {height: 40px;width: 300px; color: black;}
+.number_input {height: 40px;width: 200px;}
+.text_input {height: 40px;width: 350px;}
+
+.form-container {    
+    background:#171312;
+    justify-content: center;
+    padding: 5px;
+    margin:auto;
+    border-radius:10px;    
+    width: 100%;
+    color: white;}
+
+    
+.ck{color:black;}
+
+.ck .ck-editor .ck-content .cke_editable{
+  color:black;
+}
+ 
+.ck.ck-editor p{
+    color: black !important;
+}
+
+.ck .ck-editor pre{
+    color: black !important;
+}
+
+.container pre{
+    color: white !important;
+    background-color: black !important;
+}
+.input-group {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+        }
+        select, input {
+            padding: 8px;
+            margin: 0 5px;
+            font-size: 16px;
+        }
+        input {
+            flex: 1;
+        }
+        #contact_number{
+          width:100px;
+        }
+
+        .nav-link{
+          color:yellow;
+        }
+
+        .nav-link:hover{
+          color:red;
+        }
+</style>
+{% endblock %}
+{% block content %}
+{% if request.device.is_mobile %}  
+<div class="form-container my-2" 
+style="background-color:#171312;color:white" 
+id="add-user-page-1">
+{% else %}
+<div class="form-container my-2 bg-dark" 
+style="width:75%;color:white" 
+id="create-user-account-page"> 
+{% endif %}  
+               
+<div class="row justify-content-center mx-2">
+{% if error_message %}
+
+  <h5 id="error_message" style='color:red'> {{error_message}} </h5>
+  
+{% endif %}
+  <h3 style='color:yellow'> Create User Account </h3>
+  <sub>
+    <h5>If you have already signed up <a href="{% url 'login' %}" type="Button" class = "btn btn-success btn-lg" type="Button" style="text-decoration: none; color:white;  cursor:pointer;">Click to Login</a>
+    </h5>
+
+  </sub> 
+  {% if parent_username %}
+  <h3 style='color:yellow'>
+    Parent Account: {{parent_username}}</h3>
+    {% endif %}
+ 
+  <form onsubmit="return validateForm()" method='POST' action="" enctype="multipart/form-data">
+  {% csrf_token %}
+
+  <div class="form-group m-3">
+  <label>Full Name</label>
+  <input name = "first_name" type="text" value="{{full_name}}" required class="form-control">
+  </div>
+
+  <div class="form-group m-3">
+  <label>Login User ID (Enter your email ID)</label>
+ 
+  <input id="username" name = "username" type="text" value ="{{username}}" required class="form-control">
+
+  
+</div>
+
+<div class="form-group m-3">
+<label>Email</label>
+<input name="email" value = "{{email}}" type="text" placeholder="Enter your email" required
+class="form-control">
+</div>
+<div class="form-group m-3">
+<label>Contact Number:{{selected_country_code}} {{contact_number}}</label>
+</div>
+<div class="form-group mx-3">
+  
+  {% include "accounts/country_codes.html" %}
+  <input value ="{{contact_number}}" class ="my-2" name = "contact_number1" type="text" id="contact_number1" placeholder="Enter your mobile number" style="width:300px;" required/>
+  <input  value ="{{contact_number}}" class ="my-2" name = "contact_number" type="hidden" id="contact_number" placeholder="Enter your mobile number" style="width:300px;" required/>
+<!-- <input name = "contact_number" type="text" placeholder="Enter your phone number" required
+class="form-control"> -->
+</div>
+<div class="form-group m-3">
+<label>Alternate Mobile Number</label>
+<input value = "{{alternate_number}}"name = "alt_contact_number" type="text" placeholder="Enter alternate mobile number (optional)"
+  class="form-control">
+  </div>
+  <div class="form-group m-3">
+  <label>Password</label>
+  <input name = "password1" id="password1" type="password" placeholder="Enter your password" required
+  class="form-control">
+</div>
+<div class="form-group m-3">
+<label>Confirm Password</label>
+<input name = "password2" id="password2" type="password" placeholder="Confirm your password" required
+class="form-control">
+</div>
+<div class="form-group m-3">
+<label for="date_of_birth">Date of Birth:</label>
+<input 
+      type="date" 
+      id="1935hday" 
+      name="dob" 
+      value="{{date_of_birth}}"
+      placeholder="Enter your Date of Birth:" 
+      required 
+      class="form-control" 
+      min="1925-01-01" 
+      max="2014-01-01">
+    <div id="error-message" class="error-message" style="color:red;font-weight: bold;">
+      Please enter a date between 1940-01-01 and 2014-01-01.
+    </div>      
+   
+</div>
+
+<!--  -->
+
+<!--  -->
+                       
+<div class="form-group m-3">
+<label>Postal Address</label>
+<input value="{{postal_address}}" name = "postal_address" type="text" placeholder="Enter your Postal address" 
+class="form-control" required>
+</div>
+<div class="form-group m-3">
+  <label>PIN/ZIP code</label>
+  <input value="{{pin_code}}" name = "pin_code" type="text" placeholder="Enter PIN code" 
+  class="form-control" required>
+  </div>
+<div class="form-group m-3">
+  <label>District</label>
+  <input value = "{{district}}" name = "district" type="text" placeholder="Enter your District" 
+  class="form-control" required>
+  </div>
+  <div class="form-group m-3">
+    <label>State</label>
+    <input value = "{{state}}"name = "state" type="text" placeholder="Enter your State" 
+    class="form-control" required>
+    </div>
+    <div class="form-group m-3">
+      <label>Country</label>
+      <input value = "{{country}}"name = "country" type="text" placeholder="Enter your Country" 
+      class="form-control" required>
+      </div>
+      <div class="form-group m-3">
+        <label>Organization</label>
+        <input value = "{{organization}}" name = "institute" type="text" placeholder="Enter your Institute name" 
+        class="form-control">
+        </div>
+<div class="gender-details">
+<label class="gender-title">Gender</label>
+{% if gender == "Male" %}
+<input type="radio" name="gender" value="Male" id="dot-1" required checked>
+{% else %}
+<input type="radio" name="gender" value="Male" id="dot-1" required>
+{% endif %}
+<label for="dot-1">Male
+</label>
+{% if gender == "Female" %}
+<input type="radio" name="gender" value="Female" id="dot-2" checked>
+{% else %}
+<input type="radio" name="gender" value="Female" id="dot-2">
+{% endif %}
+<label for="dot-2">Female
+</label>          
+</div>
+<div class="form-group m-3">
+<label for="agreeCheckbox">
+  <input type="checkbox" id="agreeCheckbox" name="agreeCheckbox">
+  I read and understood the instructions.
+</label>
+</div>
+{% if tenant.get_domain.domain == "krishnacontest.vbquest.com" %}
+<a href="{% url 'instructions' %}" class="nav-link">Click Here To Read the Quiz Instructions</a> 
+{% endif %}             
+
+<a href="{% url 'login' %}" class = "nav-link">Already Signed Up, Click here to Login</a>
+
+<!--  -->
+<div class="modal-footer">
+<input class = "btn btn-success btn-lg" type="submit" value="Register">
+<input type="reset" value="Reset" class="btn btn-secondary btn-lg">
+</div>
+<!--  -->
+</form>
+</div>
+{% if is_site_created == 'yes' %}
+<div class="modal-footer"></div>
+<center>OR</center>
+  <center>
+  <a class="tes_btn b eg ef cb nw na nx ny nz cj ck cp de oa ob oc od cq cr cs ct cu" href="{% provider_login_url 'google' %}" rel="noopener follow" >
+  
+    <div class="n o kr">
+     
+      <h6>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="ah">
+        <g fill-rule="evenodd" clip-rule="evenodd">
+          <path d="M20.64 12.2c0-.63-.06-1.25-.16-1.84H12v3.49h4.84a4.14 4.14 0 0 1-1.8 2.71v2.26h2.92a8.78 8.78 0 0 0 2.68-6.61z" fill="#4285F4">
+  
+          </path>
+          <path d="M12 21a8.6 8.6 0 0 0 5.96-2.18l-2.91-2.26a5.41 5.41 0 0 1-8.09-2.85h-3v2.33A9 9 0 0 0 12 21z" fill="#34A853"></path><path d="M6.96 13.71a5.41 5.41 0 0 1 0-3.42V7.96h-3a9 9 0 0 0 0 8.08l3-2.33z" fill="#FBBC05"></path><path d="M12 6.58c1.32 0 2.5.45 3.44 1.35l2.58-2.58A9 9 0 0 0 3.96 7.96l3 2.33A5.36 5.36 0 0 1 12 6.6z" fill="#EA4335">
+  
+          </path>
+          </g>
+      </svg>
+          <b>Sign into {{ domain }} with Google </b></h6>
+      <div class="oe of ah">
+  
+      </div></div></a></center>
+    </div>
+  {% endif %}
+
+
+<script>
+  const dobInput = document.getElementById('1935hday');
+    const errorMessage = document.getElementById('error-message');
+    const form = document.getElementById('dobForm');
+
+    dobInput.addEventListener('input', () => {
+      const minDate = new Date(dobInput.min);
+      const maxDate = new Date(dobInput.max);
+      const selectedDate = new Date(dobInput.value);
+
+      if (selectedDate < minDate || selectedDate > maxDate) {
+        errorMessage.style.display = 'block';
+      } else {
+        errorMessage.style.display = 'none';
+      }
+    });
+
+    form.addEventListener('submit', (e) => {
+      const minDate = new Date(dobInput.min);
+      const maxDate = new Date(dobInput.max);
+      const selectedDate = new Date(dobInput.value);
+
+      if (selectedDate < minDate || selectedDate > maxDate) {
+        e.preventDefault();
+        errorMessage.style.display = 'block';
+      }
+    });
+
+    function closeBtnClick(){
+       var x = document.getElementById("create-user-account-page");
+      if (x.style.display === "none") {
+             x.style.display = "block";
+          } else {
+         x.style.display = "none";
+       }
+    }
+
+    // Added on 19-11-2024 VBHat
+
+    function validateForm() {
+            // Check if the "I read and understood the instructions" checkbox is checked
+            var checkbox = document.getElementById("agreeCheckbox");
+            if (!checkbox.checked) {
+                alert("You must agree to the instructions before submitting.");
+                return false;
+            }
+            // password1 = document.getElementById("password1").value
+            // password2 = document.getElementById("password2").value
+
+            // if (password1 != password2)
+            // {
+            //   error_message = "Passwords do not match!"
+            //   //alert(error_message);
+            //   document.getElementById("error_message").innerHTML = error_message;
+            //   return false;
+            // }
+
+            // Get the selected country code and mobile number
+            var countryCode = document.getElementById("countryCode").value;
+            var mobileNumber = document.getElementById("contact_number1").value;
+
+            // E.164 format: concatenate the country code and mobile number (without special characters)
+            var fullMobileNumber = countryCode + mobileNumber;
+
+            // Set the full mobile number (E.164 format) back into the mobile input field
+            document.getElementById("contact_number").value = fullMobileNumber;
+            contact_number = document.getElementById("contact_number").value;
+            //alert("Combined no: "+contact_number);
+            // If all validations pass, allow form submission
+            return true;
+        }
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  
+  <script>
+   var categoryName;
+   var url = "#"
+   
+    $("#category").change(function () {
+      categoryName = $(this).val();
+      url = url + "?category={{" + categoryName}+"}";
+      console.log(url);
+      alert(url)
+     //  document.getElementById("url").innerHTML = "URL= " + url1;
+     // // document.getElementById("category").value = categoryId;           
+     //document.getElementById("cat_id").innerHTML = "Selected category ID= " + categoryId;
+     //+ document.getElementById("category").value;
+  
+      $.ajax({
+        url: url,
+
+        data: {
+          'category': categoryName
+        },
+        success: function (data) {  
+          // document.getElementById("demo4").innerHTML = data;        
+           // $("#Sub_Category").html(data);
+           document.getElementById("category").value = categoryName;
+               
+        }
+      });
+    
+
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1041043976795866"
+     crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+  
+
+  usernameInput.addEventListener("blur", function() {
+    const usernameInput = document.getElementById("username");
+    const username = usernameInput.value;
+    alert(username);
+    if (username) {
+      fetch("{% url 'check_user_exists' %}", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+          "X-CSRFToken": "{{ csrf_token }}", // CSRF token
+        },
+        body: new URLSearchParams({ username: username }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          const errorDiv = document.getElementById("error_message");
+          if (data.exists) {
+            errorDiv.textContent = "User already exists!";
+            errorDiv.style.display = "block";
+          } else {
+            errorDiv.style.display = "none";
+          }
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+          document.getElementById("error_message").textContent =
+            "An error occurred. Please try again.";
+        });
+    }
+  });
+});
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+function checkUserExist() {
+  
+      const username = document.getElementById("username").value;
+      alert(username);
+      if (username) {
+        $.ajax({
+          url: "{% url 'check_user_exists' %}", // URL of the view
+          type: "GET",
+          data: {
+            username: username,
+            //csrfmiddlewaretoken: "{{ csrf_token }}", // CSRF token for security
+          },
+          success: function(response) {
+            alert(response);
+            if (response.exists) {
+              $("#error_message").text("User already exists!").show();
+            } else {
+              $("#error_message").hide();
+            }
+          },
+          error: function() {
+            alert("error");
+            $("#error_message").text("An error occurred. Please try again.").show();
+          },
+        });
+      } else {
+        $("#error_message").hide();
+      }
+  }
+</script>
+{% endblock content %}

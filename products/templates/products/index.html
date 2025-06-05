@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}  <!-- Load the static template tag -->
+
+{% block content %}
+<div class="container" id="itemsDisplay">
+<h3 class="site_title_1 title_2" 
+       id="thank-text">
+<span></span>
+<b>Explore ... {{selected_category}}</b></h3>  
+<div class="row"> 
+            {% for category in main_categories %}
+            <div class="col-md-3 mt-4">
+               
+                <div class="card">
+                    <a href="{% url 'marketplace' category.slug %}">
+                        {% if category.category_image %}
+                            <img class="card-img-top image" src="{{ category.category_image.url }}" alt="{{player.player_name}}">
+                        {% endif %}    
+                    </a>
+                    <div class="card-body">
+                        <h5 style="color:black;">{{category.name | lower | capfirst}}</h5>
+                        <!-- <h3>{{ player.player_image }}</h3> -->
+                        <a href="{% url 'marketplace' category.slug %}" class="btn btn-primary">View Items</a>
+
+                              
+                    </div>
+                </div>
+            </div> 
+            {% endfor %} 
+        </div>
+    
+    </div>
+
+     {% endblock content %}

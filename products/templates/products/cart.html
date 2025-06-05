@@ -1,0 +1,107 @@
+
+{% extends 'base.html' %}
+{% load static %}  <!-- Load the static template tag -->
+
+{% block title %}
+    Marketplace - Shopping Cart
+{% endblock %}
+<style>
+ .cart-item-img{
+    width:100px;
+    height:300px;
+ }
+
+
+
+</style>
+{% block content %}
+<div class="container mt-2" id="itemsDisplay">
+    <h3 class="site_title_1 title_2" 
+    id="thank-text">
+ <span></span>
+ <b>Your Shopping Cart
+</b></h3>
+    {% if cart.items.exists %}
+
+    <div class="row text-white">
+        <!-- Shopping Cart Column -->
+        <div class="col-md-6 mt-2">
+
+           
+            {% for item in cart.items.all %}
+    
+            <div class="row bg-dark mt-2">
+        
+                <div class="col-md-4 mt-2">
+                        <img class="cart-item-img" src="{{ item.product.product_image.url }}" alt="{{item.product.product_name}}">
+                        <a href="{% url 'remove_from_cart' item.id %}" class="my-2 btn btn-dark"><i class="bi bi-trash"></i></a>
+                        
+                </div>
+                <div class="col-md-8 mt-2">
+                <p>{{ item.product.product_name }} | {{item.product.quantity}} {{item.product.measurement}} <p>
+                <p><span class="yellow-para">Sale Price: {{ item.product.currency }} {{ item.product.selling_price }} </span>  
+                    <s>{{ item.product.currency }} {{item.product.price}}</s> for {{item.product.quantity}} {{item.product.measurement}} 
+                    | Discount: {{ item.product.currency }} {{ item.product.discount }} 
+                    
+                </p>
+                <p>Available quantity: {{item.product.available_stock}} {{item.product.measurement}}</span>
+                
+                <p>No. Of Items: {{ item.quantity }} | Total quantity: {{ item.get_total_quantity }} {{item.product.measurement}}</p>
+                             
+                <p>{% include 'products/update_cart.html' %}   </p>
+                <p>Sub total price:{{ item.product.currency }} {{ item.get_total_price}}</p>
+                <p>Sub total delivery charges: {{ item.product.currency }} {{ item.get_total_delivery_charges }} </p>
+                <p>Sub total savings: {{ item.product.currency }} {{ item.get_total_discount}}</p>
+                <p id="deliveryDatePara" class="yellow-para">Delivery date: {{delivery_date}} </p>
+               
+                </div>
+            </div>
+  
+            {% endfor %} 
+                <div class="row mt-2">
+                <div class="col-md-3"><strong>Total: </strong>
+                </div>
+                <div class="col-md-5">
+                <p><strong>{{ item.product.currency }} {{ cart.get_total_price }}</strong></p>
+                </div>
+            </div>
+
+        </div>
+        
+        <!-- Order Summary Column -->
+        <div class="col-md-4 mx-2 mt-2">
+            <h3>Order Summary ({{cart.items.count}}) Items</h3>
+            <div class="row bg-dark">
+            
+                <div class="col-md-6 mx-2 mt-2"><strong>Total: </strong></div>
+                <div class="col-md-4  mt-2">
+                <p><strong>{{ currency }} {{ cart.get_total_price }}</strong></p>
+                </div>
+            </div>
+            <div class="row bg-dark">
+                <div class="col-md-6 mx-2 mt-2"><strong>Delivery Charges: </strong></div>
+                <div class="col-md-3  mx-2 mt-2">
+                <p><strong>{{ currency }} {{ cart.get_total_delivery_charges }}</strong></p>
+                </div>
+            </div> 
+        
+            <div class="row bg-dark">
+                <div class="col-md-6 mx-2 mt-2"><strong>Total Order Amount: </strong></div>
+                <div class="col-md-3  mx-2 mt-2">
+                <p><strong>{{ currency }} {{ cart.get_total_order_amount }}</strong></p>
+                </div>
+            </div>
+            <div class="row bg-dark">
+                <div class="col-md-6 mx-2 mt-2"><strong>Your savings: </strong></div>
+                <div class="col-md-3  mx-2 mt-2">
+                <p><strong>{{ currency }} {{ cart.get_total_cart_discount }}</strong></p>
+                </div>
+            </div>
+            <a href="{% url 'checkout' %}" class="my-2 btn btn-success">Checkout and Pay</a>
+        </div>
+    {% else %}
+        <h4 style="color:orangered;">Cart is empty.</h4>
+    {% endif %}
+</div>
+
+    {% endblock content %}

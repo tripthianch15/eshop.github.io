@@ -1,0 +1,61 @@
+<style>
+    a{
+        color: white !important;
+    }
+</style>
+<!-- Sidebar Toggle Button (Only for Small Screens) -->
+<button class="btn btn-primary d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar" aria-controls="mobileSidebar">
+    <i class="bi bi-list"></i> Menu
+</button>
+
+<!-- Sidebar (Large Screens) -->
+<div class="d-flex flex-column flex-shrink-0 p-3 d-none d-lg-block" id="sidebar" style="width: 250px;">
+    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-light text-decoration-none">
+        <span class="fs-4">Dashboard</span>
+    </a>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item"><a href="/" class="nav-link link-dark"><i class="bi bi-house-door"></i> Home</a></li>
+        {% if user.is_authenticated %}
+            
+            {% if user.is_seller %}
+                <li><a href="#" class="nav-link link-dark"><i class="bi bi-shop"></i> Seller Dashboard</a></li>
+                <li><a href="#" class="nav-link link-dark"><i class="bi bi-plus-circle"></i> Add Product</a></li>
+                <li><a href="{% url 'dashboard' %}" class="nav-link link-dark">Dashboard</a></li>
+                <li><a href="{% url 'my_products' %}" class="nav-link link-dark">Products</a></li>
+                <li><a href="#" class="nav-link link-dark">Orders</a></li>
+                <li><a href="#" class="nav-link link-dark">Profile</a></li>
+                <li><a href="#" class="nav-link link-dark">Settings</a></li>
+
+            <li><a href="{% url 'signout' %}" class="nav-link link-dark"><i class="bi bi-box-arrow-in-right"></i> Sign out</a></li>
+        {% endif %}
+        {% endif %}
+    </ul>
+</div>
+
+<!-- Offcanvas Sidebar for Small Screens -->
+<div class="offcanvas offcanvas-start d-lg-none" tabindex="-1" id="mobileSidebar" aria-labelledby="mobileSidebarLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="mobileSidebarLabel">Menu</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <ul class="nav nav-pills flex-column">
+            <li class="nav-item"><a href="/" class="nav-link link-dark"><i class="bi bi-house-door"></i> Home</a></li>
+            {% if user.is_authenticated %}
+            
+            {% if user.is_seller %}
+                <li><a href="#" class="nav-link link-dark"><i class="bi bi-shop"></i> Seller Dashboard</a></li>
+                <li><a href="#" class="nav-link link-dark"><i class="bi bi-plus-circle"></i> Add Product</a></li>
+                <li><a href="{% url 'dashboard' %}" class="nav-link link-dark">Dashboard</a></li>
+                <li><a href="{% url 'my_products' %}" class="nav-link link-dark">Products</a></li>
+                <li><a href="#" class="nav-link link-dark">Orders</a></li>
+                <li><a href="#" class="nav-link link-dark">Profile</a></li>
+                <li><a href="#" class="nav-link link-dark">Settings</a></li>
+
+            <li><a href="{% url 'signout' %}" class="nav-link link-dark"><i class="bi bi-box-arrow-in-right"></i> Sign out</a></li>
+        {% endif %}
+        {% endif %}
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}  <!-- Load the static template tag -->
+
+{% block title %}
+    Marketplace - Shopping Cart
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <h3 class="site_title_1 title_2" 
+    id="thank-text">
+ <span></span>
+ <b>Thank you for your order!
+</b></h3>
+        
+        <h4 style="color:orangered;">Your order has been placed successfully. You will receive a confirmation email shortly.</h4>
+        <a href="/" class="btn btn-primary my-4">Browse Products</a>
+</div>
+{% endblock content %}
