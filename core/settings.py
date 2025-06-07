@@ -197,6 +197,6 @@ EMAIL_HOST_PASSWORD =  # Use an App Password, NOT your Gmail password
 
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 ADMIN_EMAIL = 'anchantripthi05@gmail.com' #"your-admin-email@example.com"  # Replace with your own email
-RAZOR_KEY_ID = 'rzp_test_xCF2LEnNkcxnhR'
+RAZOR_KEY_ID = 
 
-RAZOR_KEY_SECRET = 'qynm5ZgnEZVB6NG5fjeRILuK'
+RAZOR_KEY_SECRET = 
