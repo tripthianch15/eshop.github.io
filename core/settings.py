@@ -193,7 +193,7 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'anchantripthi05@gmail.com' # Replace with your Gmail
 
-EMAIL_HOST_PASSWORD = 'wngn iklr nmmd zjlr' # Use an App Password, NOT your Gmail password
+EMAIL_HOST_PASSWORD =  # Use an App Password, NOT your Gmail password
 
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 ADMIN_EMAIL = 'anchantripthi05@gmail.com' #"your-admin-email@example.com"  # Replace with your own email
